@@ -32,7 +32,6 @@ public class testp2 {
             rdao.update(sietske);
             System.out.println("Achteraf:");
             System.out.println(rdao.findById(77).toString());
-            rdao.update(sietske);
 
             //vind iemand via geboortedatum
             System.out.println("[Test] Mensen met de geboortedatum 1981-03-14: ");
@@ -40,7 +39,7 @@ public class testp2 {
             for (Reiziger reiziger : r){
                 System.out.println(reiziger);
             }
-            
+
             //verwijder gebruiker
             System.out.print("[Test] Eerst " + reizigers.size() + " reizigers, na ReizigerDAO.delete() ");
             rdao.delete(sietske);

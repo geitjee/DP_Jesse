@@ -1,5 +1,8 @@
 package P2;
 
+import P3.Adres;
+import P3.AdresDAOPsql;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +95,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
             }
             reiziger.setAchternaam(resultSet.getString("achternaam"));
             reiziger.setGeboortedatum(resultSet.getDate("geboortedatum"));
+            reiziger.setAdres(new AdresDAOPsql(conn).findByReiziger(resultSet.getInt("reiziger_id")));
             resultSet.close();
             s.close();
             return reiziger;
@@ -119,6 +123,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
                 }
                 reiziger.setAchternaam(resultSet.getString("achternaam"));
                 reiziger.setGeboortedatum(resultSet.getDate("geboortedatum"));
+                reiziger.setAdres(new AdresDAOPsql(conn).findByReiziger(resultSet.getInt("reiziger_id")));
                 reizigers.add(reiziger);
             }
             resultSet.close();
@@ -149,6 +154,7 @@ public class ReizigerDAOPsql implements ReizigerDAO {
                 }
                 reiziger.setAchternaam(resultSet.getString("achternaam"));
                 reiziger.setGeboortedatum(resultSet.getDate("geboortedatum"));
+                reiziger.setAdres(new AdresDAOPsql(conn).findByReiziger(resultSet.getInt("reiziger_id")));
                 reizigers.add(reiziger);
             }
             resultSet.close();

@@ -1,6 +1,10 @@
 package P2;
 
+import P3.Adres;
+
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reiziger {
 
@@ -9,6 +13,8 @@ public class Reiziger {
     private String tussenvoegsel;
     private String achternaam;
     private Date geboortedatum;
+    private Adres adres;
+
     public Reiziger(){ }
 
     public Reiziger(int id,String v, String t, String a, Date gb){
@@ -34,6 +40,9 @@ public class Reiziger {
     public Date getGeboortedatum(){return this.geboortedatum;}
     public void setGeboortedatum(Date geboortedatum){this.geboortedatum = geboortedatum;}
 
+    public Adres getAdres() { return adres; }
+    public void setAdres(Adres adres) { this.adres = adres; }
+
     public String getNaam(){
         if (this.tussenvoegsel == null || this.tussenvoegsel == ""){
             return this.voorletters + " " + this.achternaam;
@@ -44,6 +53,10 @@ public class Reiziger {
     }
 
     public String toString() {
-        return "#" + id + ": " + getNaam() + " (" + geboortedatum + ")";
+        if (adres != null) {
+            return "#" + id + ": " + getNaam() + " (" + geboortedatum + ")" + adres.toString();
+        }else{
+            return "#" + id + ": " + getNaam() + " (" + geboortedatum + ")";
+        }
     }
 }
