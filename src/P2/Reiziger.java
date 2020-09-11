@@ -1,6 +1,7 @@
 package P2;
 
 import P3.Adres;
+import P4.OVChipkaart;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -14,8 +15,7 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
     private Adres adres;
-
-    public Reiziger(){ }
+    private List<OVChipkaart> ovChipkaarts;
 
     public Reiziger(int id,String v, String t, String a, Date gb){
         this.id = id;
@@ -51,6 +51,9 @@ public class Reiziger {
             return this.voorletters + " " + this.tussenvoegsel + " " + this.achternaam;
         }
     }
+
+    public List<OVChipkaart> getOvChipkaarts() { return ovChipkaarts; }
+    public void setOvChipkaarts(List<OVChipkaart> ovChipkaarts) { this.ovChipkaarts = ovChipkaarts; }
 
     public String toString() {
         if (adres != null) {

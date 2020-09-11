@@ -1,19 +1,22 @@
 package P3;
 
 
+import P2.Reiziger;
+
+import java.sql.SQLException;
 import java.util.List;
 
 public interface AdresDAO {
 
-    public boolean save(Adres adres);
+    public boolean save(Adres adres) throws SQLException;
 
-    public boolean update(Adres adres);
+    public boolean update(Adres adres) throws SQLException;
 
-    public boolean delete(Adres adres);
+    public boolean delete(Adres adres) throws SQLException;
 
-    public Adres findById(int id);
+    public Adres findById(int id) throws SQLException;
 
-    public Adres findByReiziger(int datum);
+    public Adres findByReiziger(Reiziger reiziger) throws SQLException;
 
-    public List<Adres> findAll();
+    public List<Adres> findAll() throws SQLException;
 }

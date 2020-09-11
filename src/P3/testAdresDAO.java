@@ -14,7 +14,7 @@ public class testAdresDAO {
             AdresDAOPsql rdao = new AdresDAOPsql(DriverManager.getConnection("jdbc:postgresql://localhost/ovchip?user=postgres&password=jesse123"));
             String gbdatum = "1999-01-01";
             Reiziger r = new Reiziger(90, "J", null, "Kaas", java.sql.Date.valueOf(gbdatum));
-            Adres a = new Adres(50, "H1", "14B", "weg", "utrecht", 90);
+            Adres a = new Adres(50, "H1", "14B", "weg", "utrecht", r);
             r.setAdres(a);
             new ReizigerDAOPsql(DriverManager.getConnection("jdbc:postgresql://localhost/ovchip?user=postgres&password=jesse123")).save(r);
             System.out.println(a);
@@ -41,7 +41,7 @@ public class testAdresDAO {
 
             //vind via reizigerID
             System.out.println("[Test] adres vinden via reizigerID:");
-            System.out.println(rdao.findByReiziger(90).toString());
+            System.out.println(rdao.findByReiziger(r).toString());
 
             //vinden via adresID
             System.out.println("[Test] adres vinden via adres id");
