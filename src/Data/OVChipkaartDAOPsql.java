@@ -1,8 +1,7 @@
-package P4;
+package Data;
 
-import P2.Reiziger;
-import P2.ReizigerDAOPsql;
-import P3.AdresDAOPsql;
+import Domein.OVChipkaart;
+import Domein.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,7 +28,14 @@ public class OVChipkaartDAOPsql implements OVChipkaartDAO {
     }
     @Override
     public boolean update(OVChipkaart ovChipkaart) throws SQLException {
-
+        Statement s = conn.createStatement();
+        String query = "SELECT * FROM ov_chipkaart WHERE kaart_nummer = " + ovChipkaart.getKaart_nummer();
+        ResultSet resultSet = s.executeQuery(query);
+        if(resultSet.next() == false){
+            return save(ovChipkaart);
+        }
+        resultSet.close();
+        s.close();
         PreparedStatement statement = conn.prepareStatement("UPDATE ov_chipkaart SET geldig_tot = ? , klasse = ?, saldo = ? , reiziger_id = ? WHERE kaart_nummer = ?");
         statement.setDate(1, ovChipkaart.getGeldig_tot());
         statement.setInt(2, ovChipkaart.getKlasse());
@@ -47,7 +53,7 @@ public class OVChipkaartDAOPsql implements OVChipkaartDAO {
         int kaart_nummer = ovChipkaart.getKaart_nummer();
         Statement s = conn.createStatement();
         String query = "DELETE FROM ov_chipkaart WHERE kaartnummer = " + kaart_nummer;
-        s.executeQuery(query);
+        s.executeUpdate(query);
         s.close();
         return true;
     }
@@ -72,7 +78,7 @@ public class OVChipkaartDAOPsql implements OVChipkaartDAO {
         ResultSet resultSet = p.executeQuery();
         List<OVChipkaart> ovChipkaarts = new ArrayList<>();
         while (resultSet.next()) {
-            OVChipkaart ov = new OVChipkaart(resultSet.getInt("kaart_nummer"), resultSet.getDate("geldig_tot"), resultSet.getInt("klasse"), resultSet.getFloat("saldo"), new ReizigerDAOPsql(conn).findById(resultSet.getInt("reiziger_id")));
+            OVChipkaart ov = new OVChipkaart(resultSet.getInt("kaart_nummer"), resultSet.getDate("geldig_tot"), resultSet.getInt("klasse"), resultSet.getFloat("saldo"), reiziger);
             ovChipkaarts.add(ov);
         }
         resultSet.close();

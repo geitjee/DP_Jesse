@@ -1,8 +1,7 @@
-package P2;
+package Data;
 
-import P3.Adres;
-import P3.AdresDAOPsql;
-import P4.OVChipkaartDAOPsql;
+import Domein.OVChipkaart;
+import Domein.Reiziger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,6 +30,15 @@ public class ReizigerDAOPsql implements ReizigerDAO {
         statement.setString(4, achternaam);
         statement.setDate(5, geboortedatum);
         statement.executeUpdate();
+        if (reiziger.getAdres() != null) {
+            new AdresDAOPsql(conn).save(reiziger.getAdres());
+        }
+        if (reiziger.getOvChipkaarts().size() >= 1) {
+            OVChipkaartDAOPsql ovsql = new OVChipkaartDAOPsql(conn);
+            for (OVChipkaart ov : reiziger.getOvChipkaarts()){
+                ovsql.save(ov);
+            }
+        }
         statement.close();
         return true;
     }
@@ -50,6 +58,15 @@ public class ReizigerDAOPsql implements ReizigerDAO {
         statement.setInt(5, id);
 
         statement.executeUpdate();
+        if (reiziger.getAdres() != null) {
+            new AdresDAOPsql(conn).update(reiziger.getAdres());
+        }
+        if (reiziger.getOvChipkaarts().size() >= 1) {
+            OVChipkaartDAOPsql ovsql = new OVChipkaartDAOPsql(conn);
+            for (OVChipkaart ov : reiziger.getOvChipkaarts()){
+                ovsql.update(ov);
+            }
+        }
         statement.close();
         return true;
     }
@@ -59,8 +76,16 @@ public class ReizigerDAOPsql implements ReizigerDAO {
         int id = reiziger.getId();
         Statement s = conn.createStatement();
         String query = "DELETE FROM reiziger WHERE reiziger_id = " + id;
-
-        s.executeQuery(query);
+        if (reiziger.getAdres() != null) {
+            new AdresDAOPsql(conn).delete(reiziger.getAdres());
+        }
+        if (reiziger.getOvChipkaarts().size() >= 1) {
+            OVChipkaartDAOPsql ovsql = new OVChipkaartDAOPsql(conn);
+            for (OVChipkaart ov : reiziger.getOvChipkaarts()){
+                ovsql.delete(ov);
+            }
+        }
+        s.executeUpdate(query);
         s.close();
         return true;
     }

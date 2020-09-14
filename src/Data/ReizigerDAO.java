@@ -1,4 +1,6 @@
-package P2;
+package Data;
+
+import Domein.Reiziger;
 
 import java.sql.SQLException;
 import java.util.List;

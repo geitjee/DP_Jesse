@@ -1,6 +1,4 @@
-package P3;
-
-import P2.Reiziger;
+package Domein;
 
 public class Adres {
     private int id;

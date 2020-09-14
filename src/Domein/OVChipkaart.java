@@ -1,6 +1,4 @@
-package P4;
-
-import P2.Reiziger;
+package Domein;
 
 import java.sql.Date;
 
@@ -34,5 +32,16 @@ public class OVChipkaart {
 
     public Reiziger getReiziger() { return reiziger; }
     public void setReiziger(Reiziger reiziger) { this.reiziger = reiziger; }
+
+    @Override
+    public String toString() {
+        return "OVChipkaart{" +
+                "kaart_nummer=" + kaart_nummer +
+                ", geldig_tot=" + geldig_tot +
+                ", klasse=" + klasse +
+                ", saldo=" + saldo +
+                '}';
+    }
 }
+
 

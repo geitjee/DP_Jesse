@@ -1,6 +1,7 @@
-package P4;
+package Data;
 
-import P2.Reiziger;
+import Domein.Reiziger;
+import Domein.OVChipkaart;
 
 import java.sql.SQLException;
 import java.util.List;

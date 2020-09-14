@@ -1,5 +1,9 @@
 package P2;
 
+import Data.ReizigerDAO;
+import Data.ReizigerDAOPsql;
+import Domein.Reiziger;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
@@ -9,7 +13,8 @@ public class testp2 {
         try {
             System.out.println("\n---------- Test ReizigerDAO -------------");
             ReizigerDAO rdao = new ReizigerDAOPsql(DriverManager.getConnection("jdbc:postgresql://localhost/ovchip?user=postgres&password=jesse123"));
-            // Haal alle reizigers op uit de database
+
+            System.out.println("test");// Haal alle reizigers op uit de database
             List<Reiziger> reizigers = rdao.findAll();
             System.out.println("[Test] ReizigerDAO.findAll() geeft de volgende reizigers:");
             for (Reiziger r : reizigers) {
@@ -32,7 +37,6 @@ public class testp2 {
             rdao.update(sietske);
             System.out.println("Achteraf:");
             System.out.println(rdao.findById(77).toString());
-
             //vind iemand via geboortedatum
             System.out.println("[Test] Mensen met de geboortedatum 1981-03-14: ");
             List<Reiziger> r = rdao.findByGbdatum("1981-03-14");

@@ -1,7 +1,7 @@
-package P3;
+package Data;
 
-import P2.Reiziger;
-import P2.ReizigerDAOPsql;
+import Domein.Reiziger;
+import Domein.Adres;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,6 +29,15 @@ public class AdresDAOPsql implements AdresDAO {
 
     @Override
     public boolean update(Adres adres) throws SQLException {
+        Statement s = conn.createStatement();
+        String query = "SELECT * FROM adres WHERE adres_id = " + adres.getId();
+        ResultSet resultSet = s.executeQuery(query);
+        if(resultSet.next() == false){
+            return save(adres);
+        }
+        resultSet.close();
+        s.close();
+
         PreparedStatement statement = conn.prepareStatement("UPDATE adres SET postcode = ?, huisnummer = ?, straat = ?, woonplaats = ?, reiziger_id = ? WHERE adres_id = ?");
         statement.setString(1, adres.getPostcode());
         statement.setString(2, adres.getHuisnummer());
@@ -46,7 +55,7 @@ public class AdresDAOPsql implements AdresDAO {
         Statement s = conn.createStatement();
         String query = "DELETE FROM adres WHERE adres_id = " + adres.getId();
 
-        s.executeQuery(query);
+        s.executeUpdate(query);
         s.close();
         return true;
     }
@@ -72,7 +81,7 @@ public class AdresDAOPsql implements AdresDAO {
         if (resultSet.next() == false) {
             return null;
         }
-        Adres a = new Adres(resultSet.getInt("adres_id"), resultSet.getString("postcode"), resultSet.getString("huisnummer"), resultSet.getString("straat"), resultSet.getString("woonplaats"), new ReizigerDAOPsql(conn).findById(resultSet.getInt("reiziger_id")));
+        Adres a = new Adres(resultSet.getInt("adres_id"), resultSet.getString("postcode"), resultSet.getString("huisnummer"), resultSet.getString("straat"), resultSet.getString("woonplaats"), reiziger);
         resultSet.close();
         s.close();
         return a;

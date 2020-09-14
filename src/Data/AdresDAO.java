@@ -1,7 +1,8 @@
-package P3;
+package Data;
 
 
-import P2.Reiziger;
+import Domein.Reiziger;
+import Domein.Adres;
 
 import java.sql.SQLException;
 import java.util.List;

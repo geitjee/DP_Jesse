@@ -1,7 +1,4 @@
-package P2;
-
-import P3.Adres;
-import P4.OVChipkaart;
+package Domein;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
     private Adres adres;
-    private List<OVChipkaart> ovChipkaarts;
+    private List<OVChipkaart> ovChipkaarts = new ArrayList<>();
 
     public Reiziger(int id,String v, String t, String a, Date gb){
         this.id = id;
@@ -56,10 +53,15 @@ public class Reiziger {
     public void setOvChipkaarts(List<OVChipkaart> ovChipkaarts) { this.ovChipkaarts = ovChipkaarts; }
 
     public String toString() {
+        String s = "#" + id + ": " + getNaam() + " (" + geboortedatum + ")";
         if (adres != null) {
-            return "#" + id + ": " + getNaam() + " (" + geboortedatum + ")" + adres.toString();
-        }else{
-            return "#" + id + ": " + getNaam() + " (" + geboortedatum + ")";
+            s += adres.toString();
         }
+        if (ovChipkaarts.size() >= 1){
+            for (OVChipkaart ov : ovChipkaarts){
+                s += ov.toString();
+            }
+        }
+        return s;
     }
 }

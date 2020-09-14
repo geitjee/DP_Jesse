@@ -1,8 +1,9 @@
 package P3;
 
-import P2.Reiziger;
-import P2.ReizigerDAO;
-import P2.ReizigerDAOPsql;
+import Data.AdresDAOPsql;
+import Domein.Adres;
+import Domein.Reiziger;
+import Data.ReizigerDAOPsql;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
