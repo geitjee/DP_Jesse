@@ -1,7 +1,8 @@
 package Data;
 
-import Domein.OVChipkaart;
+import P4.OVChipkaart;
 import Domein.Reiziger;
+import P4.OVChipkaartDAOPsql;
 
 import java.sql.*;
 import java.util.ArrayList;

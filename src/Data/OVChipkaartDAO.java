@@ -1,7 +1,7 @@
 package Data;
 
 import Domein.Reiziger;
-import Domein.OVChipkaart;
+import P4.OVChipkaart;
 
 import java.sql.SQLException;
 import java.util.List;

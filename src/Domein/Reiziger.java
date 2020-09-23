@@ -1,5 +1,7 @@
 package Domein;
 
+import P4.OVChipkaart;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;

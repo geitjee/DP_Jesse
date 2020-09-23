@@ -1,6 +1,11 @@
-package Domein;
+package P4;
+
+import Domein.Reiziger;
+import P4.Product;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OVChipkaart {
 
@@ -9,6 +14,7 @@ public class OVChipkaart {
     private int klasse;
     private float saldo;
     private Reiziger reiziger;
+    private List<Product> productList = new ArrayList<>();
 
     public OVChipkaart(int kaart_nummer, Date geldig_tot, int klasse, float saldo, Reiziger reiziger){
         this.kaart_nummer = kaart_nummer;
@@ -32,6 +38,9 @@ public class OVChipkaart {
 
     public Reiziger getReiziger() { return reiziger; }
     public void setReiziger(Reiziger reiziger) { this.reiziger = reiziger; }
+
+    public List<Product> getProduct() { return productList; }
+    public void setProduct(List<Product> product) { this.productList = product; }
 
     @Override
     public String toString() {
